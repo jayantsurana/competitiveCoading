@@ -1,2 +1,2 @@
-# competitiveCoading
+# competitiveCoding
 My personal solutions.

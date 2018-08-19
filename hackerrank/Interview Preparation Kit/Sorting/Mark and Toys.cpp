@@ -2,42 +2,40 @@
 using namespace std;
 vector<string> split_string(string);
 
-// Complete the countSwaps function below.
-void countSwaps(vector<int> a) {
-    int size = a.size();
-    int counter = 0;
-    bool isSorted = false;
-    while(isSorted != true){
-        isSorted = true;
-        for(int i=0; i<size-1; i++)
-            if(a[i] > a[i+1]){
-                int temp = a[i];
-                a[i] = a[i+1];
-                a[i+1] = temp;
-                counter++;
-                isSorted = false;
-            }
-        size--;
+// Complete the maximumToys function below.
+int maximumToys(vector<int> prices, int k) {
+    sort(prices.begin(), prices.end());
+    int total = 0;
+    long long totalSpent = 0;
+    for(long long j=0; j<prices.size(); j++){
+        totalSpent += prices[j];
+        if(totalSpent<=k)
+            total++;
+        else
+            break;
     }
-    cout << "Array is sorted in " << counter << " swaps." << endl;
-    cout << "First Element: " << a[0] << endl;
-    cout << "Last Element: " << a[a.size() - 1];
+    return total;
 }// By Jayant Surana.
 
 int main()
 {
-    int n;
-    cin >> n;
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-    string a_temp_temp;
-    getline(cin, a_temp_temp);
-    vector<string> a_temp = split_string(a_temp_temp);
-    vector<int> a(n);
+    ofstream fout(getenv("OUTPUT_PATH"));
+    string nk_temp;
+    getline(cin, nk_temp);
+    vector<string> nk = split_string(nk_temp);
+    int n = stoi(nk[0]);
+    int k = stoi(nk[1]);
+    string prices_temp_temp;
+    getline(cin, prices_temp_temp);
+    vector<string> prices_temp = split_string(prices_temp_temp);
+    vector<int> prices(n);
     for (int i = 0; i < n; i++) {
-        int a_item = stoi(a_temp[i]);
-        a[i] = a_item;
+        int prices_item = stoi(prices_temp[i]);
+        prices[i] = prices_item;
     }
-    countSwaps(a);
+    int result = maximumToys(prices, k);
+    fout << result << "\n";
+    fout.close();
     return 0;
 }
 

@@ -10,7 +10,10 @@ int main()
 
     for(int i=1; i<=10; i++){
         int p = i * n;
-        printf("%d x %d = %d\n", n, i, p);
+        if(i != 10)
+            printf("%d x %d = %d\n", n, i, p);
+        else
+            printf("%d x %d = %d", n, i, p);
     }
 
     return 0;
